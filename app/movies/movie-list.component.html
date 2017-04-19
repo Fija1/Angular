@@ -1,0 +1,96 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-6 text-right">
+                <button class="btn btn-success" (click)=AddMovie();>Add Movie</button>
+                <button class="btn btn-warning" (click)=EditMovie();>Edit Movie</button>
+                <button class="btn btn-danger" (click)=DeleteMovie();>Delete Movie</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-body">
+        <div class="row">
+            <form class="form-horizontal">
+
+                <div class="col-md-3">
+                    <div class="form-group" style="margin-left:0; margin-right:0;">
+                        <label for="movieTitle" class="col-md-4">Title</label>
+                        <div class="col-md-6">
+                            <input [(ngModel)]="movieTitle" type="text" name="movieTitle" id="movieTitle">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group" style="margin-left:0; margin-right:0;">
+                        <label for="movieActors" class="col-md-4">Actors</label>
+                        <div class="col-md-6">
+                            <input [(ngModel)]="movieActors" type="text" name="movieActors" id="movieActors">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group" style="margin-left:0; margin-right:0;">
+                        <label for="movieGenre" class="col-md-4">Genre</label>
+                        <div class="col-md-6">
+                            <input [(ngModel)]="movieGenre" type="text" name="movieGenre" id="movieGenre">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="form-group" style="margin-left:0; margin-right:0;">
+                        <label for="movieId" class="col-md-4">id</label>
+                        <div class="col-md-6">
+                            <input [(ngModel)]="movieId" type="text" name="movieId" id="movieId">
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<div class='panel panel-primary'>
+    <div class='panel-heading'>
+        <div class="row">
+            <div class="col-md-6">
+                {{pageTitle}}
+            </div>
+            <div class="col-md-6 text-right">
+                <button class='btn btn-success'
+                        (click)='toggleDetails()'>
+                    {{showDetails ? 'Hide' : 'Show'}} Details
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class='panel-body'>
+        <div class='table-responsive'>
+            <table class='table'
+                   *ngIf='movies && movies.length'>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Actors</th>
+                    <th>Genre</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor='let movie of movies'>
+                    <td><a [routerLink]="['./movie', movie._id]"> {{movie._id}} </a> </td>
+                    <td *ngIf='showDetails'>{{ movie.title}}</td>
+                    <td *ngIf='showDetails'>{{ movie.actors}}</td>
+                    <td *ngIf='showDetails'>{{ movie.genre }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
